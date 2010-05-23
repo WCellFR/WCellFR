@@ -33,12 +33,6 @@ namespace WCell.Addons.Default.Instances
 			oggleflintEntry.AddSpell(SpellId.Cleave);
 			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, SpellId.Cleave);
 
-			oggleflintEntry.Activated += oggleflint =>
-			{
-				var brain = (BaseBrain)oggleflint.Brain;
-				var combatAction = (AICombatAction)brain.Actions[BrainState.Combat];
-				combatAction.Strategy = new OggleflintAttackAction(oggleflint);
-			};
 
 			// Taragaman the Hungerer
 			taragamanEntry = NPCMgr.GetEntry(NPCId.TaragamanTheHungerer);
@@ -47,12 +41,6 @@ namespace WCell.Addons.Default.Instances
 			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, taragamanSpells[1]);
 			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, taragamanSpells[2]);
 
-			taragamanEntry.Activated += taragaman =>
-			{
-				var brain = (BaseBrain)taragaman.Brain;
-				var combatAction = (AICombatAction)brain.Actions[BrainState.Combat];
-				combatAction.Strategy = new TaragamanAttackAction(taragaman);
-			};
 
 			// Jergosh the Invoker
 			jergoshEntry = NPCMgr.GetEntry(NPCId.JergoshTheInvoker);
@@ -61,12 +49,6 @@ namespace WCell.Addons.Default.Instances
 			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, jergoshSpells[1]);
 			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, jergoshSpells[2]);
 
-			jergoshEntry.Activated += jergosh =>
-			{
-				var brain = (BaseBrain)jergosh.Brain;
-				var combatAction = (AICombatAction)brain.Actions[BrainState.Combat];
-				combatAction.Strategy = new JergoshAttackAction(jergosh);
-			};
 
 			// Bazzalan
 			bazzalanEntry = NPCMgr.GetEntry(NPCId.Bazzalan);
@@ -75,13 +57,6 @@ namespace WCell.Addons.Default.Instances
 
 			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, bazzalanSpells[1]);
 			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, bazzalanSpells[2]);
-
-			bazzalanEntry.Activated += bazzalan =>
-			{
-				var brain = (BaseBrain)bazzalan.Brain;
-				var combatAction = (AICombatAction)brain.Actions[BrainState.Combat];
-				combatAction.Strategy = new BazzalanAttackAction(bazzalan);
-			};
 
 		}
 		#endregion
