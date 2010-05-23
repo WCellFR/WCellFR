@@ -115,7 +115,6 @@ namespace WCell.Addons.Default.Instances
             private uint voidwalkersummon;
 		    public override void OnEnterCombat()
             {
-                voidwalkersummon = 0;
                 //Here the warlock will summon a voidwalker
 				if (voidwalkersummon == 0)
 				{
