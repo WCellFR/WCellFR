@@ -79,8 +79,9 @@ namespace WCell.Addons.Default.Instances
 			ragefireshamanEntry = NPCMgr.GetEntry(NPCId.RagefireShaman);
 			SpellId[] ragefireshamanSpells = new SpellId[2] { SpellId.HealingWave, SpellId.LightningBolt };
             jergoshEntry.AddSpells(ragefireshamanSpells);
-            SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[1]); //Casting heal on self - TODO : check cooldown
-			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[2]);//TODO : Check cooldowns
+            SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[1]); //Casting heal on self
+            SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[1]);//TODO : Check cooldowns
+            SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[2]);//TODO : Check cooldowns
 
 			//RagefireTrogg
 			ragefiretroggEntry = NPCMgr.GetEntry(NPCId.RagefireTrogg);
@@ -112,14 +113,14 @@ namespace WCell.Addons.Default.Instances
             : base(searingbladewarlock)
 			{
 			}
-            private uint voidwalkersummon;
+            private uint VoidWalkerSummonCount;
 		    public override void OnEnterCombat()
             {
                 //Here the warlock will summon a voidwalker
-				if (voidwalkersummon == 0)
+                if (VoidWalkerSummonCount == 0)
 				{
 					m_owner.SpellCast.Trigger(SpellId.SummonVoidwalker);
-                    voidwalkersummon++; //Can only summon it once
+                    VoidWalkerSummonCount++; //Can only summon it once
 				}
                 base.OnEnterCombat();
 				
