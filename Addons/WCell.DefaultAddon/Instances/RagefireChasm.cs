@@ -74,24 +74,29 @@ namespace WCell.Addons.Default.Instances
 			earthborerEntry = NPCMgr.GetEntry(NPCId.Earthborer);
 			earthborerEntry.AddSpell(SpellId.EarthborerAcid);
 			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, SpellId.EarthborerAcid); //TODO : Check cooldowns
+
 			//RagefireShaman
 			ragefireshamanEntry = NPCMgr.GetEntry(NPCId.RagefireShaman);
 			SpellId[] ragefireshamanSpells = new SpellId[2] { SpellId.HealingWave, SpellId.LightningBolt };
             jergoshEntry.AddSpells(ragefireshamanSpells);
-			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[1]);//TODO : Check cooldowns & Healing support?!
+            SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[1]); //Casting heal on self - TODO : check cooldown
 			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[2]);//TODO : Check cooldowns
+
 			//RagefireTrogg
 			ragefiretroggEntry = NPCMgr.GetEntry(NPCId.RagefireTrogg);
 			ragefiretroggEntry.AddSpell(SpellId.Strike);
-			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, SpellId.Strike); //TODO : Check cooldowns
+			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(5000, 12000)); }, SpellId.Strike); //TODO : Check cooldowns
+
 			//SearingBladeCultist
 			searingbladecultistEntry = NPCMgr.GetEntry(NPCId.SearingBladeCultist);
 			searingbladecultistEntry.AddSpell(SpellId.CurseOfAgony_4);
 			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, SpellId.CurseOfAgony_4); //TODO : Check cooldowns
+
 			//SearingBladeEnforcer
 			searingbladeenforcerEntry = NPCMgr.GetEntry(NPCId.SearingBladeEnforcer);
 			searingbladeenforcerEntry.AddSpell(SpellId.ShieldSlam);
 			SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(5000, 12000)); }, SpellId.ShieldSlam); //TODO : Check cooldowns
+
 			//SearingBladeWarlock (!)
 			searingbladewarlockEntry = NPCMgr.GetEntry(NPCId.SearingBladeWarlock);
 			searingbladewarlockEntry.AddSpell(SpellId.ShadowBolt_31);
@@ -99,26 +104,28 @@ namespace WCell.Addons.Default.Instances
 			searingbladewarlockEntry.BrainCreator = searingbladewarlock => new SearingBladeWarlockBrain(searingbladewarlock);
 		}
 		#endregion
-		
-		public class SearingBladeWarlockBrain : MobBrain
+
+        #region Searing Blade Warlock Brain
+        public class SearingBladeWarlockBrain : MobBrain
         {
             public SearingBladeWarlockBrain(NPC searingbladewarlock)
             : base(searingbladewarlock)
 			{
 			}
-			uint onecastvoidwalkersummon;
+            private uint voidwalkersummon;
 		    public override void OnEnterCombat()
             {
-				onecastvoidwalkersummon = 0;
+                voidwalkersummon = 0;
                 //Here the warlock will summon a voidwalker
-				if (onecastvoidwalkersummon == 0)
+				if (voidwalkersummon == 0)
 				{
 					m_owner.SpellCast.Trigger(SpellId.SummonVoidwalker);
-					onecastvoidwalkersummon++;
+                    voidwalkersummon++; //Can only summon it once
 				}
                 base.OnEnterCombat();
 				
             }
-		}
-	}
+        }
+        #endregion
+    }
 }
