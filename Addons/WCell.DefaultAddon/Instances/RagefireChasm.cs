@@ -70,6 +70,7 @@ namespace WCell.Addons.Default.Instances
 			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, bazzalanSpells[2]);
 			
 			//NPCs
+			
 			//Earthborer
 			earthborerEntry = NPCMgr.GetEntry(NPCId.Earthborer);
 			earthborerEntry.AddSpell(SpellId.EarthborerAcid);
@@ -109,21 +110,22 @@ namespace WCell.Addons.Default.Instances
         #region Searing Blade Warlock Brain
         public class SearingBladeWarlockBrain : MobBrain
         {
+            private bool voidWalkerSummoned = false;
+
             public SearingBladeWarlockBrain(NPC searingbladewarlock)
             : base(searingbladewarlock)
 			{
 			}
-            private uint VoidWalkerSummonCount;
+
 		    public override void OnEnterCombat()
             {
                 //Here the warlock will summon a voidwalker
-                if (VoidWalkerSummonCount == 0)
+                if (!voidWalkerSummoned)
 				{
 					m_owner.SpellCast.Trigger(SpellId.SummonVoidwalker);
-                    VoidWalkerSummonCount++; //Can only summon it once
+                    voidWalkerSummoned = true; //Can only summon it once
 				}
                 base.OnEnterCombat();
-				
             }
         }
         #endregion
