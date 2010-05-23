@@ -225,7 +225,6 @@ namespace WCell.Addons.Default.Instances
 				if (chr != null)
 				{
 					chainLightTick = 0;
-					m_owner.Yell("Casting chainlight spell"); // TODO: Remove this line
 					m_owner.SpellCast.Start(chainLight, false, chr);
 				}
 				return true;
@@ -236,7 +235,6 @@ namespace WCell.Addons.Default.Instances
 				if (chr != null)
 				{
 					demoralizeTick = 0;
-					m_owner.Yell("Casting demoralize spell"); // TODO: Remove this line
 					m_owner.SpellCast.Start(demoralize, false, chr);
 				}
 				return true;
@@ -388,7 +386,7 @@ namespace WCell.Addons.Default.Instances
 		[Initialization(InitializationPass.Second)]
 		static void InitInmate()
 		{
-			convictrend = SpellHandler.Get(SpellId.Intimidation);  // TODO: Find the right spellID for convictrend
+			convictrend = SpellHandler.Get(SpellId.Rend);
 		}
 
 		public InmateAttackAction(NPC dextren)
@@ -453,7 +451,7 @@ namespace WCell.Addons.Default.Instances
 		[Initialization(InitializationPass.Second)]
 		static void InitInsurgent()
 		{
-			demoralize = SpellHandler.Get(SpellId.Demoralize);  // TODO: Find the right spellID for insurgent demoralize
+			demoralize = SpellHandler.Get(SpellId.DemoralizingShout);
 		}
 
 		public InsurgentAttackAction(NPC insurgent)
@@ -519,8 +517,8 @@ namespace WCell.Addons.Default.Instances
 		[Initialization(InitializationPass.Second)]
 		static void InitPrison()
 		{
-			prisonKick = SpellHandler.Get(SpellId.Demoralize);  // TODO: Find the right spellID for prison kick 
-			prisonDisarm = SpellHandler.Get(SpellId.Demoralize);  // TODO: Find the right spellID for prison disarm
+			prisonKick = SpellHandler.Get(SpellId.ClassSkillKick);
+			prisonDisarm = SpellHandler.Get(SpellId.Disarm_2);
 		}
 
 		public PrisonerAttackAction(NPC prisoner)

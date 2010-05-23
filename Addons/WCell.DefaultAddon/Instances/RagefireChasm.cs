@@ -30,11 +30,8 @@ namespace WCell.Addons.Default.Instances
 		{
 			// Oggleflint
 			oggleflintEntry = NPCMgr.GetEntry(NPCId.Oggleflint);
-
 			oggleflintEntry.AddSpell(SpellId.Cleave);
-
-			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; },
-							   SpellId.Cleave);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, SpellId.Cleave);
 
 			oggleflintEntry.Activated += oggleflint =>
 			{
@@ -45,14 +42,10 @@ namespace WCell.Addons.Default.Instances
 
 			// Taragaman the Hungerer
 			taragamanEntry = NPCMgr.GetEntry(NPCId.TaragamanTheHungerer);
-
-			taragamanEntry.AddSpell(SpellId.Uppercut);
-			taragamanEntry.AddSpell(SpellId.FireNova);
-
-			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; },
-							   SpellId.Uppercut);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; },
-							   SpellId.FireNova);
+            SpellId[] taragamanSpells = new SpellId[2] { SpellId.Uppercut, SpellId.FireNova };
+            taragamanEntry.AddSpells(taragamanSpells);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, taragamanSpells[1]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, taragamanSpells[2]);
 
 			taragamanEntry.Activated += taragaman =>
 			{
@@ -63,14 +56,10 @@ namespace WCell.Addons.Default.Instances
 
 			// Jergosh the Invoker
 			jergoshEntry = NPCMgr.GetEntry(NPCId.JergoshTheInvoker);
-
-			jergoshEntry.AddSpell(SpellId.CurseOfWeakness);
-			jergoshEntry.AddSpell(SpellId.Immolate);
-
-			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; },
-							   SpellId.CurseOfWeakness);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; },
-							   SpellId.Immolate);
+            SpellId[] jergoshSpells = new SpellId[2] { SpellId.CurseOfWeakness, SpellId.Immolate };
+            jergoshEntry.AddSpells(jergoshSpells);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, jergoshSpells[1]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, jergoshSpells[2]);
 
 			jergoshEntry.Activated += jergosh =>
 			{
@@ -81,14 +70,11 @@ namespace WCell.Addons.Default.Instances
 
 			// Bazzalan
 			bazzalanEntry = NPCMgr.GetEntry(NPCId.Bazzalan);
+            SpellId[] bazzalanSpells = new SpellId[2] { SpellId.Poison, SpellId.SinisterStrike };
+            bazzalanEntry.AddSpells(bazzalanSpells);
 
-			bazzalanEntry.AddSpell(SpellId.Poison);
-			bazzalanEntry.AddSpell(SpellId.SinisterStrike);
-
-			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; },
-							   SpellId.Poison);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; },
-							   SpellId.SinisterStrike);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, bazzalanSpells[1]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, bazzalanSpells[2]);
 
 			bazzalanEntry.Activated += bazzalan =>
 			{
@@ -100,43 +86,4 @@ namespace WCell.Addons.Default.Instances
 		}
 		#endregion
 	}
-	#region Oggleflint
-	public class OggleflintAttackAction : AIAttackAction
-	{
-		public OggleflintAttackAction(NPC oggleflint)
-			: base(oggleflint)
-		{
-		}
-	}
-	#endregion
-
-	#region Taragaman
-	public class TaragamanAttackAction : AIAttackAction
-	{
-		public TaragamanAttackAction(NPC taragaman)
-			: base(taragaman)
-		{
-		}
-	}
-	#endregion
-
-	#region Jergosh
-	public class JergoshAttackAction : AIAttackAction
-	{
-		public JergoshAttackAction(NPC jergosh)
-			: base(jergosh)
-		{
-		}
-	}
-	#endregion
-
-	#region Bazzalan
-	public class BazzalanAttackAction : AIAttackAction
-	{
-		public BazzalanAttackAction(NPC bazzalan)
-			: base(bazzalan)
-		{
-		}
-	}
-	#endregion
 }
