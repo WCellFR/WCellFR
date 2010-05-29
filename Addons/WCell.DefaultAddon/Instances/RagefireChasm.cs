@@ -78,7 +78,7 @@ namespace WCell.Addons.Default.Instances
 
 			//RagefireShaman
 			ragefireshamanEntry = NPCMgr.GetEntry(NPCId.RagefireShaman);
-			SpellId[] ragefireshamanSpells = new SpellId[1] { SpellId.HealingWave, SpellId.LightningBolt };
+			SpellId[] ragefireshamanSpells = new SpellId[2] { SpellId.HealingWave, SpellId.LightningBolt };
             jergoshEntry.AddSpells(ragefireshamanSpells);
             SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[0]); //Casting heal on self
             SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[0]);//TODO : Check cooldowns
