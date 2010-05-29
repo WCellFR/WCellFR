@@ -50,24 +50,24 @@ namespace WCell.Addons.Default.Instances
 			taragamanEntry = NPCMgr.GetEntry(NPCId.TaragamanTheHungerer);
             SpellId[] taragamanSpells = new SpellId[2] { SpellId.Uppercut, SpellId.FireNova };
             taragamanEntry.AddSpells(taragamanSpells);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, taragamanSpells[1]);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, taragamanSpells[2]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, taragamanSpells[0]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, taragamanSpells[1]);
 
 
 			// Jergosh the Invoker
 			jergoshEntry = NPCMgr.GetEntry(NPCId.JergoshTheInvoker);
             SpellId[] jergoshSpells = new SpellId[2] { SpellId.CurseOfWeakness, SpellId.Immolate };
             jergoshEntry.AddSpells(jergoshSpells);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, jergoshSpells[1]);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, jergoshSpells[2]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, jergoshSpells[0]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 5000; }, jergoshSpells[1]);
 
 
 			// Bazzalan
 			bazzalanEntry = NPCMgr.GetEntry(NPCId.Bazzalan);
             SpellId[] bazzalanSpells = new SpellId[2] { SpellId.Poison, SpellId.SinisterStrike };
             bazzalanEntry.AddSpells(bazzalanSpells);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, bazzalanSpells[1]);
-			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, bazzalanSpells[2]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 10000; }, bazzalanSpells[0]);
+			SpellHandler.Apply(spell => { spell.CooldownTime = 12000; }, bazzalanSpells[1]);
 			
 			//NPCs
 			
@@ -78,11 +78,11 @@ namespace WCell.Addons.Default.Instances
 
 			//RagefireShaman
 			ragefireshamanEntry = NPCMgr.GetEntry(NPCId.RagefireShaman);
-			SpellId[] ragefireshamanSpells = new SpellId[2] { SpellId.HealingWave, SpellId.LightningBolt };
+			SpellId[] ragefireshamanSpells = new SpellId[1] { SpellId.HealingWave, SpellId.LightningBolt };
             jergoshEntry.AddSpells(ragefireshamanSpells);
-            SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[1]); //Casting heal on self
+            SpellHandler.Apply(spell => { spell.TargetFlags = SpellTargetFlags.Self; }, ragefireshamanSpells[0]); //Casting heal on self
+            SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[0]);//TODO : Check cooldowns
             SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[1]);//TODO : Check cooldowns
-            SpellHandler.Apply(spell => { spell.CooldownTime = (random.Next(8000, 12000)); }, ragefireshamanSpells[2]);//TODO : Check cooldowns
 
 			//RagefireTrogg
 			ragefiretroggEntry = NPCMgr.GetEntry(NPCId.RagefireTrogg);
