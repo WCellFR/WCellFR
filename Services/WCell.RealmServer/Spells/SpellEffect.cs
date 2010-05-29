@@ -549,6 +549,7 @@ namespace WCell.RealmServer.Spells
 			// die += (uint)Math.Round(Effect.DicePerLevel * caster.Level);
 
 			// dice boni
+			value += DiceSides;
 			//value += Utility.Random(DiceCount, DiceCount * DiceSides);
 
 			return value;
@@ -617,7 +618,7 @@ namespace WCell.RealmServer.Spells
 			}
 			//if (DiceCount != 0)
 			//{
-			//	writer.WriteLine(indent + "DiceCount: {0}", DiceCount);
+			//    writer.WriteLine(indent + "DiceCount: {0}", DiceCount);
 			//}
 			if (DiceSides != 0)
 			{
@@ -799,11 +800,11 @@ namespace WCell.RealmServer.Spells
 			SetAuraEffectMiscValueType(AuraType.DispelImmunity, typeof(DispelType));
 			SetAuraEffectMiscValueType(AuraType.MechanicImmunity, typeof(SpellMechanic));
 			SetAuraEffectMiscValueType(AuraType.Mounted, typeof(NPCId));
-			SetAuraEffectMiscValueType(AuraType.ModShapeshift, typeof(ShapeShiftForm));
+			SetAuraEffectMiscValueType(AuraType.ModShapeshift, typeof(ShapeshiftForm));
 			SetAuraEffectMiscValueType(AuraType.Transform, typeof(NPCId));
 			SetAuraEffectMiscValueType(AuraType.ModSpellDamageByPercentOfSpirit, typeof(DamageSchoolMask));
 			SetAuraEffectMiscValueType(AuraType.ModSpellHealingByPercentOfSpirit, typeof(DamageSchoolMask));
-			SetAuraEffectMiscValueType(AuraType.DamageTakenFromCasterPct, typeof(DamageSchoolMask));
+			SetAuraEffectMiscValueType(AuraType.DamagePctAmplifier, typeof(DamageSchoolMask));
 
 			SetAuraEffectMiscValueBType(AuraType.ModSpellDamageByPercentOfSpirit, typeof(StatType));
 			SetAuraEffectMiscValueBType(AuraType.ModSpellHealingByPercentOfSpirit, typeof(StatType));
