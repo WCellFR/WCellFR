@@ -1049,20 +1049,20 @@ namespace WCell.RealmServer.Entities
 			this.UpdateAllDamages();
 		}
 
-		private void ModDamageBonusPct(DamageSchool school, float delta)
+		private void ModDamageBonusPct(DamageSchool school, int delta)
 		{
 			if (delta == 0)
 			{
 				return;
 			}
 			var field = PlayerFields.MOD_DAMAGE_DONE_PCT + (int)school;
-			SetFloat(field, GetFloat(field) + delta);
+			SetInt32(field, GetInt32(field) + delta);
 		}
 
 		/// <summary>
 		/// Adds/Removes a percent modifier to all of the given damage schools
 		/// </summary>
-		public void ModDamageBonusPct(uint[] schools, float delta)
+		public void ModDamageBonusPct(uint[] schools, int delta)
 		{
 			foreach (var school in schools)
 			{
@@ -1587,6 +1587,7 @@ namespace WCell.RealmServer.Entities
 		public ClientLocale Locale
 		{
 			get { return m_client.Info.Locale; }
+			set { m_client.Info.Locale = value; }
 		}
 
 		/// <summary>

@@ -907,6 +907,21 @@ namespace WCell.RealmServer.Spells
 			return null;
 		}
 
+		/// <summary>
+		/// Returns the first SpellEffect of the given Type within this Spell
+		/// </summary>
+		public SpellEffect GetEffect(AuraType type)
+		{
+			foreach (var effect in Effects)
+			{
+				if (effect.AuraType == type)
+				{
+					return effect;
+				}
+			}
+			return null;
+		}
+
 		public SpellEffect GetFirstEffectWith(Predicate<SpellEffect> predicate)
 		{
 			foreach (var effect in Effects)
@@ -1005,6 +1020,25 @@ namespace WCell.RealmServer.Spells
 		public SpellEffect AddTriggerSpellEffect(SpellId triggerSpell, ImplicitTargetType targetType)
 		{
 			var effect = AddEffect(SpellEffectType.TriggerSpell);
+			effect.TriggerSpellId = triggerSpell;
+			effect.ImplicitTargetA = targetType;
+			return effect;
+		}
+
+		/// <summary>
+		/// Adds a SpellEffect that will trigger the given Spell on oneself
+		/// </summary>
+		public SpellEffect AddPeriodicTriggerSpellEffect(SpellId triggerSpell)
+		{
+			return AddPeriodicTriggerSpellEffect(triggerSpell, ImplicitTargetType.Self);
+		}
+
+		/// <summary>
+		/// Adds a SpellEffect that will trigger the given Spell on the given type of target
+		/// </summary>
+		public SpellEffect AddPeriodicTriggerSpellEffect(SpellId triggerSpell, ImplicitTargetType targetType)
+		{
+			var effect = AddAuraEffect(AuraType.PeriodicTriggerSpell);
 			effect.TriggerSpellId = triggerSpell;
 			effect.ImplicitTargetA = targetType;
 			return effect;
