@@ -1,0 +1,51 @@
+<!--French translation by WCellFr
+Traduction française par WcellFR-->
+<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Items>
+    <Item Key="Done">
+      <Value>Terminé.</Value>
+    </Item>
+    <Item Key="Addon">
+      <Value>Addon</Value>
+    </Item>
+    <Item Key="Library">
+      <Value>Librairie</Value>
+    </Item>
+    <Item Key="PlayerNotOnline">
+      <Value>Le joueur {0} n'est pas en ligne</Value>
+    </Item>
+
+    <Item Key="SubCommandNotFound">
+      <Value>Sous-commande inexistante : {0}</Value>
+    </Item>
+    <Item Key="MustNotUseCommand">
+      <Value>Vous n'avez pas l'autorisation d'utiliser la commande : {0}!</Value>
+    </Item>
+
+    <Item Key="CmdSummonPlayerNotOnline">
+      <Value>Le joueur {0} n'est pas en ligne</Value>
+    </Item>
+
+
+    <Item Key="CmdKickMustProvideName">
+      <Value>Vous devez définir un nom en utilisamt le modifieur -n</Value>
+    </Item>
+
+    <Item Key="CmdLocalizerDescription">
+      <Value>Donne les commandes pour l'utilisation du localiseur</Value>
+    </Item>
+    <Item Key="CmdLocalizerReloadDescription">
+      <Value>Recharge les fichiers de langues</Value>
+    </Item>
+    <Item Key="CmdLocalizerSetLocaleDescription">
+      <Value>Permet d'utiliser des « locales » particulières (Utilisez "Cfg Set DefaultLocale" pour configurer les locales du serveur)</Value>
+    </Item>
+    <Item Key="CmdLocalizerSetLocaleParamInfo">
+      <Value>&lt;locale&gt;</Value>
+    </Item>
+    <Item Key="UnableToSetUserLocale">
+      <Value>Impossible de changer les fonctions de langues (locales) de l'utilisateur</Value>
+    </Item>
+  </Items>
+</Translation>
