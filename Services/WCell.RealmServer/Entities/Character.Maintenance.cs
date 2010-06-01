@@ -182,8 +182,6 @@ namespace WCell.RealmServer.Entities
 				SetInt32(UnitFields.HEALTH, m_record.Health);
 			}
 
-			InitializeRegeneration();
-
 		}
 		#endregion
 
@@ -475,6 +473,7 @@ namespace WCell.RealmServer.Entities
 
 			try
 			{
+				InitializeRegeneration();
 				((PlayerSpellCollection)m_spells).PlayerInitialize();
 
 				OnLogin();
@@ -721,10 +720,13 @@ namespace WCell.RealmServer.Entities
 			{
 				return false;
 			}
-#if DEBUG
-			var writer = DebugUtil.GetTextWriter(m_client.Account);
-			writer.WriteLine("Saving {0}...", Name);
-#endif
+
+			if (DebugUtil.Dumps)
+			{
+				var writer = DebugUtil.GetTextWriter(m_client.Account);
+				writer.WriteLine("Saving {0}...", Name);
+			}
+
 			try
 			{
 				if (m_record == null)
@@ -849,9 +851,13 @@ namespace WCell.RealmServer.Entities
 					saveScope.Flush();
 				}
 				m_record.LastSaveTime = DateTime.Now;
-#if DEBUG
-				writer.WriteLine("Saved {0} (Region: {1}).", Name, m_record.RegionId);
-#endif
+
+				if (DebugUtil.Dumps)
+				{
+					var writer = DebugUtil.GetTextWriter(m_client.Account);
+					writer.WriteLine("Saved {0} (Region: {1}).", Name, m_record.RegionId);
+				}
+
 				return true;
 			}
 			catch (Exception ex)
@@ -876,10 +882,12 @@ namespace WCell.RealmServer.Entities
 		{
 			SendSystemMessage("Saving failed - Please excuse the inconvenience!");
 
-#if DEBUG
-			var writer = DebugUtil.GetTextWriter(m_client.Account);
-			writer.WriteLine("Failed to save {0}: {1}", Name, ex);
-#endif
+			if (DebugUtil.Dumps)
+			{
+				var writer = DebugUtil.GetTextWriter(m_client.Account);
+				writer.WriteLine("Failed to save {0}: {1}", Name, ex);
+			}
+
 			LogUtil.ErrorException(ex, "Could not save Character " + this);
 		}
 

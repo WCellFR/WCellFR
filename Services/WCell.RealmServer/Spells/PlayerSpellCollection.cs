@@ -9,6 +9,7 @@ using WCell.RealmServer.GameObjects;
 using WCell.RealmServer.GameObjects.GOEntries;
 using WCell.RealmServer.Items;
 using WCell.RealmServer.Spells.Auras;
+using WCell.RealmServer.Spells.Auras.Misc;
 using WCell.Util.Threading;
 using WCell.RealmServer.Database;
 using WCell.Util;
@@ -40,12 +41,12 @@ namespace WCell.RealmServer.Spells
 		/// <summary>
 		/// Flat modifiers of spells
 		/// </summary>
-		public readonly List<AddModifierEffectHandler> SpellModifiersFlat = new List<AddModifierEffectHandler>();
+		public readonly List<AddModifierEffectHandler> SpellModifiersFlat = new List<AddModifierEffectHandler>(5);
 
 		/// <summary>
 		/// Percent modifiers of spells
 		/// </summary>
-		public readonly List<AddModifierEffectHandler> SpellModifiersPct = new List<AddModifierEffectHandler>();
+		public readonly List<AddModifierEffectHandler> SpellModifiersPct = new List<AddModifierEffectHandler>(5);
 
 		/// <summary>
 		/// Additional effects to be triggered when casting certain Spells
@@ -193,6 +194,10 @@ namespace WCell.RealmServer.Spells
 				OwnerChar.Skills.Remove(spell.SkillId);
 			}
 			OwnerChar.m_record.RemoveSpell(spell.Id);
+			if (spell.IsPassive)
+			{
+				Owner.Auras.Cancel(spell);
+			}
 		}
 
 		/// <summary>

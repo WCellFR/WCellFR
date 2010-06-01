@@ -775,6 +775,9 @@ namespace WCell.RealmServer.Entities
 			set { SetUInt32(PlayerFields.SHIELD_BLOCK, value); }
 		}
 
+		/// <summary>
+		/// Value in %
+		/// </summary>
 		public float DodgeChance
 		{
 			get { return GetFloat(PlayerFields.DODGE_PERCENTAGE); }
@@ -1104,7 +1107,7 @@ namespace WCell.RealmServer.Entities
 		#endregion
 
 		/// <summary>
-		/// Returns the SpellCritChance for the given DamageType
+		/// Returns the SpellCritChance for the given DamageType (0-100)
 		/// </summary>
 		public override float GetSpellCritChance(DamageSchool school)
 		{
@@ -1902,6 +1905,7 @@ namespace WCell.RealmServer.Entities
 				if (value < 0)
 					value = 0;
 
+				m_record.FreeTalentPoints = value;
 				SetUInt32(PlayerFields.CHARACTER_POINTS1, (uint)value);
 				TalentHandler.SendTalentGroupList(this);
 			}
