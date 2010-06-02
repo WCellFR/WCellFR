@@ -220,6 +220,15 @@ namespace WCell.RealmServer.Spells.Auras
 			get { return m_spell; }
 		}
 
+		/// <summary>
+		/// The amount of times that this Aura has been applied
+		/// </summary>
+		public int StackCount
+		{
+			get { return m_stackCount; }
+			set { m_stackCount = value; }
+		}
+
 		public bool IsActive
 		{
 			get;
@@ -261,6 +270,11 @@ namespace WCell.RealmServer.Spells.Auras
 		public WorldObject Caster
 		{
 			get { return m_casterInfo.Caster; }
+		}
+
+		public Unit Owner
+		{
+			get { return m_auras.Owner; }
 		}
 
 		/// <summary>
@@ -443,8 +457,9 @@ namespace WCell.RealmServer.Spells.Auras
 		{
 			m_controller = controller;
 
-			if (m_spell.IsProc)
+			if (m_spell.IsProc && m_spell.TargetProcHandlers == null && m_spell.CasterProcHandlers == null)
 			{
+				// only add proc if there is not a custom handler for it
 				m_auras.Owner.AddProcHandler(this);
 			}
 
@@ -479,6 +494,16 @@ namespace WCell.RealmServer.Spells.Auras
 			// apply initial handlers
 			ApplyInitialHandlers();
 			m_auras.OnAuraChange(this);
+		}
+		#endregion
+
+		#region Stop
+		/// <summary>
+		/// Disables the Aura without removing it's effects
+		/// </summary>
+		public void Stop()
+		{
+			
 		}
 		#endregion
 
@@ -814,9 +839,12 @@ namespace WCell.RealmServer.Spells.Auras
 			get { return m_spell.ProcTriggerFlags; }
 		}
 
+		/// <summary>
+		/// Spell to be triggered (if any)
+		/// </summary>
 		public Spell ProcSpell
 		{
-			get { return m_spell; }
+			get { return m_spell.ProcTriggerEffects != null ? m_spell.ProcTriggerEffects[0].TriggerSpell : null; }
 		}
 
 		/// <summary>
@@ -827,18 +855,20 @@ namespace WCell.RealmServer.Spells.Auras
 			get { return m_spell.ProcChance > 0 ? m_spell.ProcChance : 100; }
 		}
 
-		/// <summary>
-		/// The amount of times that this Aura has been applied
-		/// </summary>
-		public int StackCount
+		public int MinProcDelay
 		{
-			get { return m_stackCount; }
-			set { m_stackCount = value; }
+			get { return m_spell.ProcDelay; }
+		}
+
+		public DateTime NextProcTime
+		{
+			get;
+			set;
 		}
 
 		public bool CanBeTriggeredBy(Unit target, IUnitAction action, bool active)
 		{
-			if (m_spell.CanProcBeTriggeredBy(action, active))
+			if (m_spell.CanProcBeTriggeredBy(m_auras.Owner, action, active))
 			{
 				return true;
 			}

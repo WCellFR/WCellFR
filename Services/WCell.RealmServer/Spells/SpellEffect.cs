@@ -50,10 +50,6 @@ namespace WCell.RealmServer.Spells
 			ImplicitTargetType.ScriptedObjectLocation
 		};
 
-		private static readonly AuraType[] ExclusiveTypes = new[] {
-			AuraType.ModStealth, AuraType.Transform, AuraType.ModShapeshift
-		};
-
 		#region Variables
 		/// <summary>
 		/// Amount of AP to be added to the EffectValue
@@ -385,7 +381,7 @@ namespace WCell.RealmServer.Spells
 				HasTarget(ImplicitTargetType.TotemFire) ||
 				HasTarget(ImplicitTargetType.TotemWater);
 
-			IsProc = (AuraType == AuraType.ProcTriggerSpell && TriggerSpell != null) || AuraType == AuraType.ProcTriggerDamage;
+			IsProc = IsProc || (AuraType == AuraType.ProcTriggerSpell && TriggerSpell != null) || AuraType == AuraType.ProcTriggerDamage;
 
 			IsHealEffect = EffectType == SpellEffectType.Heal ||
 				EffectType == SpellEffectType.HealMaxHealth ||

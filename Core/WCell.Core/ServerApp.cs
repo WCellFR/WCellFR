@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Cell.Core;
-using Cell.Core.Collections;
+using WCell.Util.Collections;
 using NLog;
 using WCell.Core.Database;
 using WCell.Core.Initialization;
@@ -485,7 +485,7 @@ namespace WCell.Core
 
 				Start(true, false);
 
-				if (!(_running = _tcpEnabled))
+				if (!(_running = TcpEnabledEnabled))
 				{
 					s_log.Fatal(Resources.InitFailed);
 					Stop();
