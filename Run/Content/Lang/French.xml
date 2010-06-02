@@ -10,7 +10,7 @@ Traduction française par WcellFR-->
       <Value>Addon</Value>
     </Item>
     <Item Key="Library">
-      <Value>Librairie</Value>
+      <Value>Bibliothèque</Value>
     </Item>
     <Item Key="PlayerNotOnline">
       <Value>Le joueur {0} n'est pas en ligne</Value>
@@ -20,7 +20,7 @@ Traduction française par WcellFR-->
       <Value>Sous-commande inexistante : {0}</Value>
     </Item>
     <Item Key="MustNotUseCommand">
-      <Value>Vous n'avez pas l'autorisation d'utiliser la commande : {0}!</Value>
+      <Value>Vous n'avez pas l'autorisation d'utiliser la commande : {0} !</Value>
     </Item>
 
     <Item Key="CmdSummonPlayerNotOnline">
