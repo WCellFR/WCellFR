@@ -47,5 +47,12 @@ Traduction française par WcellFR-->
     <Item Key="UnableToSetUserLocale">
       <Value>Impossible de changer les fonctions de langues (locales) de l'utilisateur</Value>
     </Item>
+
+    <Item Key="CmdSpellGetDescription">
+      <Value>Donne les informations relatives à un certain sort.</Value>
+    </Item>
+    <Item Key="CmdSpellGetParamInfo">
+      <Value>&lt;spellid ou lineid&gt;</Value>
+    </Item>
   </Items>
 </Translation>
